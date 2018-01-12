@@ -19,14 +19,14 @@ else:
     PIPSI = '/Scripts/pipsi.exe'
 
 try:
-    import virtualenv
-    venv_pkg = 'virtualenv'
-    del virtualenv
+    import venv
+    venv_pkg = 'venv'
+    del venv
 except ImportError:
     try:
-        import venv
-        venv_pkg = 'venv'
-        del venv
+        import virtualenv
+        venv_pkg = 'virtualenv'
+        del virtualenv
     except ImportError:
         venv_pkg = None
 
