@@ -8,6 +8,21 @@ import glob
 from collections import namedtuple
 from os.path import join, realpath, dirname, normpath, normcase
 from operator import methodcaller
+
+
+try:
+    import venv
+    venv_pkg = 'venv'
+    del venv
+except ImportError:
+    try:
+        import virtualenv
+        venv_pkg = 'virtualenv'
+        del virtualenv
+    except ImportError:
+        venv_pkg = None
+
+
 try:
     subprocess.run
 
@@ -270,7 +285,7 @@ class Repo(object):
             return False
 
         # Install virtualenv, use the pipsi used python version by default
-        args = [sys.executable, '-m', 'virtualenv', '-p', python or sys.executable, venv_path]
+        args = [sys.executable, '-m', venv_pkg, '-p', python or sys.executable, venv_path]
 
         if system_site_packages:
             args.append('--system-site-packages')

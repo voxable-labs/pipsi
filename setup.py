@@ -19,7 +19,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'Click',
-        'virtualenv',
+        'virtualenv;python_version<"3.0"',
     ],
     entry_points='''
     [console_scripts]
