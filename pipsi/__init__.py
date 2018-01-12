@@ -285,7 +285,11 @@ class Repo(object):
             return False
 
         # Install virtualenv, use the pipsi used python version by default
-        args = [sys.executable, '-m', venv_pkg, '-p', python or sys.executable, venv_path]
+        if venv_pkg == 'venv':
+            args = [sys.executable, '-m', venv_pkg, venv_path]
+        else:
+            args = [sys.executable, '-m', venv_pkg, '-p', python or sys.executable, venv_path]
+
 
         if system_site_packages:
             args.append('--system-site-packages')
